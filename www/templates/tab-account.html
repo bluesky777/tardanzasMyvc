@@ -1,0 +1,55 @@
+<ion-view view-title="Cuenta">
+  <ion-content>
+
+    <!---
+    <ion-list>
+	    <ion-toggle  ng-model="settings.enableFriends">
+	        Nada por ahora
+	    </ion-toggle>
+    </ion-list>
+    -->
+
+	<div class="list">
+
+        <!---
+        <label class="item">
+          <ion-toggle checked="false" ng-change="toggle_trabajar_sin_conexion(trabajar_sin_conexion)" ng-model="trabajar_sin_conexion">Trabajar sin conexión</ion-toggle>
+        </label>
+        -->
+
+        <label class="item">
+          <button class="button button-block button-positive" ng-click="verCambiosHechos()" type="button">
+            <i class="icon ion-compose"></i>
+            Ver cambios que has hecho</button>
+        </label>
+
+        <label class="item">
+          <button class="button button-block button-positive" ng-click="subirCambios()" type="button">
+            <i class="icon ion-ios-cloud-upload"></i>
+            Subir cambios</button>
+        </label>
+
+
+        <label class="item">
+          <button class="button button-block button-assertive" ng-click="triggerActionSheetTraer()" type="button">
+            <i class="icon ion-alert-circled"></i>
+            Descargar reiniciando datos</button>
+        </label>
+        <!--
+        <label class="item">
+          <button class="button button-block button-positive" ng-click="actualizarUsuarioActual()" type="button">
+
+            Actualizar usuario actual</button>
+        </label>
+        -->
+
+        <label class="item">
+          <button class="button button-block button-royal" ng-click="cerrarSesion()">
+            <i class="icon ion-log-out"></i>
+            Cerrar sesión
+          </button>
+        </label>
+    </div>
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,15 @@
+/* Empty. Add your own CSS if you like */
+
+.item-content-tardado {
+    background-color: #f95252;
+  }
+  .item .item-content {
+    background-color: transparent;
+  }
+  .item-grupo-alumno a.item-content{
+      padding: 5px 0px 5px !important;
+  }
+  .text-center{
+      text-align: center;
+  }
+  

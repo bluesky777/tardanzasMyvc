@@ -1,0 +1,49 @@
+<ion-view view-title="Cambios que has hecho">
+  <ion-content>
+
+    <!---
+    <ion-list>
+	    <ion-toggle  ng-model="settings.enableFriends">
+	        Nada por ahora
+	    </ion-toggle>
+    </ion-list>
+    -->
+
+
+    <ion-refresher
+      pulling-text="Arrastra para refrescar..."
+      on-refresh="refrescar()">
+    </ion-refresher>
+
+
+    <h2>Entrada</h2>
+    <div class="row text-center" style="font-weight: 500; border-bottom: 1px solid #ccc;">
+      <div class="col col-10">Edit</div>
+      <div class="col">Nombre</div>
+      <div class="col col-10" style="font-size: 9pt;">Estado</div>
+      <div class="col col-20" style="font-size: 9pt;">Fecha</div>
+   </div>
+
+	 <div class="row" ng-repeat="cambio in alumnos_cambiados | orderBy:'abrev_grupo':'asc' " style="border-bottom: 1px solid #ccc;">
+
+        <div class="col col-10" style="padding: 0; height: 34px;">
+          <a class="button button-icon icon ion-close assertive" ng-click="eliminar(cambio, $index)" 
+            ng-show="cambio.uploaded != 'to_delete'"></a>
+
+          <a class="button button-icon icon ion-reply" ng-click="restore(cambio, $index)" 
+            ng-show="cambio.uploaded == 'to_delete'"></a>
+        </div>
+
+        <div class="col"><span style="font-size: 8pt">{{cambio.abrev_grupo}}</span>. {{cambio.apellidos + ' ' +cambio.nombres}}  </div>
+
+        <div class="col col-10" ng-show="cambio.uploaded == 'to_create' "  style="font-size: 9pt;">a crear</div>
+        <div class="col col-10" ng-show="cambio.uploaded == 'to_delete' "  style="font-size: 9pt;">a quitar</div>
+        <div class="col col-10" ng-show="cambio.uploaded == 'created' "  style="font-size: 9pt;">Subido</div>
+
+        <div class="col col-20" style="font-size: 8pt;">{{ cambio.fecha_hora | date:'yyyy-MM-dd hh:mm' }}</div>
+
+   </div>
+
+
+  </ion-content>
+</ion-view>

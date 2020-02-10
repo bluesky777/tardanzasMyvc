@@ -1,0 +1,24 @@
+<ion-view view-title="Per {{ USER.numero_periodo + ' - ' + USER.year  }}">
+  <ion-content class="padding">
+    <ion-refresher
+      pulling-text="Arrastra para refrescar..."
+      on-refresh="iniciar()">
+    </ion-refresher>
+
+    <h2>Años</h2>
+    <ion-list>
+      <ion-item class="item-remove-animate item-icon-right" ng-repeat="year in years" type="item-text-wrap" href="#/tab/dash/{{year.id}}">
+
+        <h2>{{year.year}}</h2>
+        <p ng-show="year.actual">Este es el actual</p>
+        <p ng-show="USER.year_id==year.id" style="color: #644eff;">Elegido por ti</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <ion-option-button class="button-assertive" ng-click="remove(year)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+    
+  </ion-content>
+</ion-view>

@@ -28,4 +28,6 @@ npm-debug.log*
 /node_modules
 /platforms
 /plugins
-/www
+plugins/
+plugins/android.json
+plugins/ios.json

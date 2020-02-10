@@ -1,0 +1,84 @@
+
+<ion-view view-title="Per {{ USER.numero_periodo + ' - ' + USER.year  }}">
+
+
+
+  <ion-nav-bar class="nav-title-slide-ios7 bar-positive">
+      <ion-nav-back-button class="button-clear button-icon ion-arrow-left-c"></ion-nav-back-button>
+      <ion-nav-buttons side="right">
+        <button class="button button-icon ion-search" ng-click="clickBuscar()" ng-show="!$parent.dato.buscando"></button>
+
+        <div class="bar bar-header item-input-inset" ng-show="$parent.dato.buscando" style="width: 90%; padding-right: 0px; padding-top: 5px;">
+          <label class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="text" ng-model="$parent.dato.text_buscar" placeholder="Buscar" focus-me="focusOnTxtBuscar">
+          </label>
+
+          <button class="button button-icon ion-android-close input-button" ng-if="$parent.dato.text_buscar.length"
+            ng-click="$parent.dato.text_buscar=''" style="position: absolute; right: 0; color: #bbb;">
+          </button>
+        </div>
+      </ion-nav-buttons>
+  </ion-nav-bar>
+
+
+  <ion-content class="padding">
+
+    <ion-refresher
+      pulling-text="Arrastra para refrescar..."
+      on-refresh="seleccionarDia()">
+    </ion-refresher>
+
+    <div class="row" style="border: solid 1px #ccc;" ng-show="!$parent.dato.buscando">
+      <div class="col col-20">
+        <button ng-click="buttonDateClick()" class="button button-positive">{{ nombreMes(year_mes.month) }}</button>
+      </div>
+
+      <div class="col" style="overflow: hidden;">
+        <ion-scroll direction="x" class="wide-as-needed" delegate-handle="buttonsDays" >
+          <div class="button-bar">
+            <button ng-click="seleccionarDia(dia)" ng-repeat="dia in dias track by $index" class="button" ng-class="{ 'button-calm': dia != diaSeleccionado, 'button-balanced': dia == diaSeleccionado }">{{ dia }}</button>
+          </div>
+        </ion-scroll>
+      </div>
+
+    </div>
+
+
+
+    <!--
+      <div class="list">
+        <label class="item item-input">
+          <input type="text" ng-model="$parent.dato.text_buscar" placeholder="Buscar alumno...">
+        </label>
+      </div>
+    -->
+
+    <ion-list>
+      <ion-item class="item-remove-animate item-grupo-alumno item-icon-right"
+        ng-click="toggleTardanza(alumno)"
+        ng-repeat="alumno in alumnos | filter:$parent.dato.text_buscar | orderBy:'apellidos' track by $index" type="item-text-wrap" href=""
+        ng-class="{ 'item-content-tardado': alumno.tardanza_entrada_id }">
+
+        <div class="row" style="flex-wrap: wrap;">
+          <div class="col" ng-class="{'col-90': alumno.ausencias.length > 0}">
+            <h2 ng-show="alumno.estado=='ASIS'" style="font-style: italic;">{{ ($index+1) + '. ' + alumno.apellidos }} <b>{{ alumno.nombres }}</b> ({{ alumno.estado }})</h2>
+            <h2 ng-show="alumno.estado=='MATR'">{{ ($index+1) + '. ' + alumno.apellidos }} <b>{{ alumno.nombres }}</b></h2>
+            <h2 ng-show="alumno.estado=='PREM'" style="font-style: italic;">{{ ($index+1) + '. ' + alumno.apellidos }} <b>{{ alumno.nombres }}</b> ({{ alumno.estado }})</h2>
+          </div>
+          <div class="col col-10" ng-show="alumno.ausencias.length > 0">
+            <h2 style="font-weight: 500; font-size: 20px; margin-top: -5px;"
+            ng-show="alumno.ausencias.length > 0"
+            class="tooltip" title="Tardanzas en el periodo" animation="fade">{{alumno.ausencias.length}}</h2>
+          </div>
+        </div>
+        <ion-option-button class="button-balanced" title="Tardanzas en el periodo" ng-click="crearTardanza(alumno)">
+          <i class="icon ion-plus"></i>
+        </ion-option-button>
+        <ion-option-button class="button-royal" title="Tardanzas en el periodo" ng-click="verDetalles(alumno)">
+          Detalles
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

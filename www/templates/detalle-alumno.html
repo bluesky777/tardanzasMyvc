@@ -1,0 +1,37 @@
+
+<ion-view view-title="Detalles">
+    
+
+
+
+
+  <ion-content class="padding">
+
+    <center>
+      <h2>{{ alumno.apellidos + ' ' + alumno.nombres }}</h2>
+      <h3>Per {{ USER.numero_periodo + ' - ' + USER.year }}</h3>
+    </center>
+    <div class="row text-center" style="font-weight: 500; border-bottom: 1px solid #ccc;">
+      <div class="col col-20">Edit</div>
+      <div class="col col-30">Estado</div>
+      <div class="col col-40">Fecha</div>
+      <div class="col col-20">Por</div>
+   </div>
+
+   <div class="row text-center" ng-repeat="ausencia in alumno.ausencias" style="border-bottom: 1px solid #ccc;">
+      <div class="col col-20">
+        <a class="button button-icon icon ion-close assertive" ng-click="eliminar(ausencia, $index)" 
+          ng-show="ausencia.uploaded != 'to_delete'"></a>
+
+        <a class="button button-icon icon ion-reply" ng-click="restore(ausencia, $index)" 
+          ng-show="ausencia.uploaded == 'to_delete'"></a>
+      </div>
+      <div class="col col-30" ng-show="ausencia.uploaded == 'to_create' ">a crear</div>
+      <div class="col col-30" ng-show="ausencia.uploaded == 'to_delete' ">a quitar</div>
+      <div class="col col-30" ng-show="ausencia.uploaded == 'created' ">Subido</div>
+      <div class="col col-40">{{ ausencia.fecha_hora | date:'yyyy-MM-dd hh:mm' }}</div>
+      <div class="col col-20">{{ ausencia.created_by }}</div>
+   </div>
+
+  </ion-content>
+</ion-view>
